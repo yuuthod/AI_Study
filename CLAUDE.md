@@ -8,10 +8,10 @@
 
 ## 참여자
 
-| 닉네임 | git email | 폴더명 |
-|--------|-----------|--------|
-| river  | river의_git_email@example.com | river/ |
-| kon    | kon의_git_email@example.com | kon/ |
+| 닉네임   | git email                                     | 폴더명    |
+| ----- | --------------------------------------------- | ------ |
+| river | 44132562+yuuthod@users.noreply.github.com     | river/ |
+| kon   | 109451148+konveloper@users.noreply.github.com | kon/   |
 
 > **설정 확인**: `git config user.email` 출력값이 위 email과 일치해야 합니다.  
 > 일치하지 않으면 스킬이 현재 사용자를 인식하지 못합니다.
