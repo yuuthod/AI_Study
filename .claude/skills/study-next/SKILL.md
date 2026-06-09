@@ -87,17 +87,42 @@ AskUserQuestion:
 
 각자 `[큰 주제]/[작은 주제]/river/` 또는 `kon/` 폴더에
 파일을 작성한 뒤 마감일 전까지 push해주세요.
-
-새 폴더 생성:
-\`\`\`bash
-mkdir -p "[큰 주제]/[작은 주제]/{river,kon,_공통}"
-\`\`\`
 ```
 
-## Step 7: 커밋 및 push
+## Step 7: 폴더 구조 생성
+
+리포 루트 기준으로 다음 주제 폴더를 생성하고, git이 빈 폴더를 추적할 수 있도록 각 폴더에 `.gitkeep`을 추가합니다.
+
+```bash
+REPO_ROOT=$(git rev-parse --show-toplevel)
+
+# 현재 존재하는 폴더 확인
+ls "$REPO_ROOT/[큰 주제]/[작은 주제]" 2>/dev/null || echo "폴더 없음"
+
+# 폴더 생성
+mkdir -p "$REPO_ROOT/[큰 주제]/[작은 주제]/{river,kon,_공통}"
+
+# 빈 폴더 추적용 .gitkeep 추가 (이미 파일이 있는 폴더는 건너뜀)
+for dir in river kon _공통; do
+  target="$REPO_ROOT/[큰 주제]/[작은 주제]/$dir"
+  if [ -z "$(ls -A "$target")" ]; then
+    touch "$target/.gitkeep"
+  fi
+done
+```
+
+생성 결과를 확인합니다:
+```bash
+find "$REPO_ROOT/[큰 주제]/[작은 주제]" -type f
+```
+
+## Step 8: 커밋 및 push
+
+다음주제.md와 새 폴더를 함께 커밋합니다:
 
 ```bash
 git add _공통/다음주제.md
+git add "$REPO_ROOT/[큰 주제]/[작은 주제]/"
 git commit -m "study: 다음 주제 확정 — [작은 주제명] (마감 YYYY-MM-DD)"
 git push
 ```
