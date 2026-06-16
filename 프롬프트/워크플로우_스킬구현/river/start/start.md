@@ -139,7 +139,7 @@
 2. `.gitignore` 에 `node_modules` · `.env` · 빌드 산출물이 포함됐는지 확인.
 3. `git add -A`
 4. `git commit -m "chore: initial project setup"`
-5. 사람에게 **종료 보고**: 무엇이 깔렸는지, `pnpm dev` 로 시작하는 법, 다음에 기능 개발 시 `CLAUDE.md` 라우터를 따르라는 안내.
+5. 사람에게 **종료 보고**: 무엇이 깔렸는지, `pnpm dev` 로 시작하는 법, **두 번째 스텝은 `docs/workflows/project-kickoff.md`**, 이후 작업은 `AGENTS.md` 라우터를 따르라는 안내.
 
 ---
 
