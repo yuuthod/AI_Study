@@ -1,0 +1,8 @@
+{
+  "//": "프로젝트 열면 설치 권장 팝업. 포맷·린트 일관성의 전제.",
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "Prisma.prisma"
+  ]
+}

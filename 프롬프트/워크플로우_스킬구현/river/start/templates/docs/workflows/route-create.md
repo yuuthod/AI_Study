@@ -13,15 +13,22 @@
 - 권한 객체 소유권 확인(IDOR 방지) ✓  에러 메시지에 내부정보 노출 금지 ✓
 - 뮤테이션은 CSRF 토큰 검증 ✓  외부 호출은 `app/lib/http.server.ts` 경유 ✓
 
-## 3. loader/action 구현
-- 파일은 얇게: 검증 → 가드 → `features/<도메인>` 의 서버 함수 호출 → 결과 반환.
-- DB는 Prisma로만(원시 SQL 금지 → 인젝션 차단). 외부 API는 서버에서만.
+## 3. DB 스키마 변경 (필요할 때만)
+- 새 모델/필드가 필요하면 `prisma/schema.prisma` 수정 → `pnpm prisma migrate dev --name <변경>` → 생성된 마이그레이션 확인.
+- 기획은 `docs/data-model/`, 구현 진실원천은 Prisma. 둘을 맞춘다.
 
-## 4. 테스트 (기계 게이트 = 여기선 주 게이트)
+## 4. loader/action 구현
+- 파일은 얇게: 검증 → 가드 → `features/<도메인>` 의 서버 함수 호출 → 결과 반환.
+- DB는 Prisma로만(원시 SQL 금지 → 인젝션 차단). 외부 API는 `app/lib/http.server.ts` 경유.
+
+## 5. 라우트 등록 (RR7 필수)
+- 새 라우트는 **`app/routes.ts`에 등록**해야 잡힌다(파일만 만들면 안 됨). 경로·중첩·레이아웃 확인.
+
+## 6. 테스트 (기계 게이트 = 여기선 주 게이트)
 - action/loader 단위 테스트: **검증 실패·인증 실패·권한 실패·정상** 4케이스 최소.
 - 핵심 흐름(로그인 등)은 Playwright E2E 1개.
 
-## 5. 게이트 & 종료
+## 7. 게이트 & 종료
 - `pnpm typecheck && pnpm lint && pnpm test` 통과(서버 모듈 클라 유출 lint 포함).
 - `feat:` 커밋 → PR → CI 통과.
 

@@ -5,6 +5,7 @@ import tseslint from "typescript-eslint";
 import jsxA11y from "eslint-plugin-jsx-a11y";
 import importPlugin from "eslint-plugin-import";
 import boundaries from "eslint-plugin-boundaries";
+import prettier from "eslint-config-prettier";
 
 export default tseslint.config(
   { ignores: ["build/", ".react-router/", "node_modules/", "coverage/", "!.storybook/"] },
@@ -79,4 +80,6 @@ export default tseslint.config(
       ],
     },
   },
+  // 마지막: prettier와 충돌하는 포맷 규칙 비활성(포맷은 prettier가 단독 담당)
+  prettier,
 );

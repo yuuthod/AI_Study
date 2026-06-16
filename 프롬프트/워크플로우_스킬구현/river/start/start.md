@@ -86,7 +86,7 @@
 
 ### Phase 2 · 의존성 설치
 - 런타임: `react-router` 생태계 기본 + `@conform-to/react @conform-to/zod zod remix-auth @node-rs/argon2 @prisma/client pino`
-- 개발: `prisma vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @playwright/test eslint prettier @typescript-eslint/* eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-boundaries husky lint-staged @commitlint/cli @commitlint/config-conventional sass storybook @storybook/react-vite @storybook/addon-a11y`
+- 개발: `prisma vitest @vitejs/plugin-react vite-tsconfig-paths @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @playwright/test eslint prettier eslint-config-prettier typescript-eslint eslint-plugin-jsx-a11y eslint-plugin-import eslint-plugin-boundaries husky lint-staged @commitlint/cli @commitlint/config-conventional sass storybook @storybook/react-vite @storybook/addon-a11y`
 - 정확한 패키지명·버전은 RR7 템플릿이 깐 것과 충돌 없게 맞춘다. `@remix-run/*` 는 절대 추가하지 않는다.
 
 ### Phase 3 · 센서 배치 (벽)
@@ -96,12 +96,16 @@
   - `vitest.config.ts` `vitest.setup.ts` `playwright.config.ts`
   - `prisma/schema.prisma` `docker-compose.yml` `.env.example`
   - `.github/workflows/ci.yml` `.nvmrc` `.npmrc` `.editorconfig` `.gitignore`
-- `package.json` 의 `scripts` · `lint-staged` 블록을 `templates/config/package.scripts.json` 내용으로 병합한다.
+  - `.vscode/settings.json` `.vscode/extensions.json` (IDE 무관 포맷 통일)
+  - `scripts/check-docs.mjs` (문서 양식 센서)
+- `package.json` 의 `scripts` · `lint-staged` · `engines` · `type` 블록을 `templates/config/package.scripts.json` 내용으로 병합한다.
 
 ### Phase 4 · 하네스(가이드) 배치
-- `templates/CLAUDE.md` → 프로젝트 루트 `CLAUDE.md`
-- `templates/docs/workflows/*` → `docs/workflows/`
-- `templates/docs/_shared/*` → `docs/_shared/`
+- `templates/AGENTS.md` → 프로젝트 루트 `AGENTS.md` (모든 에이전트 진실원천)
+- `templates/CLAUDE.md` → 루트 `CLAUDE.md`, `templates/GEMINI.md` → 루트 `GEMINI.md` (둘 다 AGENTS.md를 가리키는 얇은 포인터)
+- `templates/docs/*` → `docs/` 전체:
+  - `docs/README.md`(문서 지도), `docs/product/overview.md`, `docs/specs/_template.md`, `docs/screens/_template.md`, `docs/data-model/_template.md`
+  - `docs/workflows/*`(project-kickoff 포함), `docs/_shared/*`(git-conventions 포함)
 
 ### Phase 5 · 보안 기반 코드 + 예시 1개
 > **`templates/reference/security-snippets.md` 의 패턴을 그대로** 생성한다(결정성). 도메인에 맞게 모델/필드만 조정.
@@ -110,7 +114,7 @@
 - `app/lib/auth.server.ts`: remix-auth + `createCookieSessionStorage`(httpOnly·sameSite=lax·secure 조건부) + argon2id 해시 유틸.
 - `app/lib/headers.server.ts`: 보안 헤더(CSP·HSTS·X-Frame-Options·X-Content-Type-Options·Referrer-Policy)를 root에서 부여.
 - `app/features/auth/`: 로그인 예시 — schema(zod) · route(loader/action) · 컴포넌트(Conform) · `*.module.scss` · `*.test.tsx` · `*.stories.tsx` 까지 **워크플로우 문서를 따른 모범 1세트**. 이후 개발자는 이걸 본보기로 삼는다.
-- `app/styles/tokens.css`: 원시→의미 2계층 CSS 변수 + 폰트/색 **슬롯**(디자인 확정값을 여기 채움).
+- `app/styles/tokens.css`: 원시→의미 2계층 CSS 변수. 디자인 미확정이므로 **중립 임시값**으로 채워 두고(슬롯), 디자인 확정 시 `project-kickoff` 경로 ③에서 실값 주입.
 
 ### Phase 6 · 초기화
 - `pnpm prisma generate`
@@ -145,5 +149,7 @@
 - 그럼에도 Phase 1~7에서 예기치 못하게 막히면: *무엇이 왜 막혔고 사람이 무엇을 해주면 되는지* 한 단락으로 보고하고 멈춘다(깨진 결과를 진행/커밋하지 않는다).
 - **불변식을 우회하지 않는다:** 테스트/타입/lint를 끄거나 `--no-verify`, `any`, `eslint-disable`, `@ts-ignore` 로 통과시키지 않는다.
 
-## 다음 개발은 CLAUDE.md로
-설치가 끝나면 모든 후속 작업(기능 추가·컴포넌트·라우트·버그·워크플로우 수정)은 루트 `CLAUDE.md` 의 **라우터**가 적절한 `docs/workflows/<작업>.md` 하나로 안내한다. 그게 이 프로젝트의 하네스다.
+## 다음 스텝 안내 (종료 보고에 포함)
+- 설치 후 **두 번째 스텝**은 `docs/workflows/project-kickoff.md` — 아이디어/기획/기획+디자인 성숙도에 따라 `docs/`(기본정의·기능정의서·화면정의서·데이터모델)를 채운다.
+- 이후 모든 작업(기능·컴포넌트·라우트·버그·워크플로우 수정)은 루트 `AGENTS.md`(=Claude는 CLAUDE.md, Gemini는 GEMINI.md가 가리킴)의 **라우터**가 `docs/workflows/<작업>.md` 하나로 안내한다.
+- 어떤 에이전트로 열어도 자기 기본 파일 → `AGENTS.md` → `docs/README.md` 지도를 따라 **같은 규약**으로 동작한다.
