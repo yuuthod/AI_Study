@@ -1,0 +1,18 @@
+// Prisma — PostgreSQL. 파라미터 바인딩 기본 → SQL 인젝션 구조적 차단.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 인증 예시 모델 (Phase 5의 로그인 예시가 사용). 실제 도메인에 맞게 확장.
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String // argon2id 결과만 저장 — 평문 절대 금지
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

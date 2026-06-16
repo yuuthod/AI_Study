@@ -1,0 +1,36 @@
+{
+  "_comment": "Phase 3: 이 scripts·lint-staged 블록을 프로젝트 package.json에 병합한다. 패키지명/버전은 RR7 템플릿과 충돌 없게 맞춘다.",
+  "type": "module",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "packageManager": "pnpm@9",
+  "scripts": {
+    "dev": "react-router dev",
+    "build": "react-router build",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "storybook": "storybook dev -p 6006",
+    "storybook:build": "storybook build",
+    "db:up": "docker compose up -d",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{scss,css,json,md}": [
+      "prettier --write"
+    ]
+  }
+}
