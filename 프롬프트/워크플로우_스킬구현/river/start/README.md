@@ -26,6 +26,8 @@ start/
     CLAUDE.md, GEMINI.md      # AGENTS.md를 가리키는 얇은 포인터
     docs/README.md            # 문서 지도(기획/정의서 위치·양식 거버넌스)
     docs/product/, specs/, screens/, data-model/   # 기획·정의 + 템플릿
+    docs/decisions/           # ADR 결정 기록(불변) — 한 결정=한 파일
+    docs/PROGRESS.md          # 진행 상태(라이브 핸드오프) · friction-log.md(마찰→규칙 승격)
     docs/workflows/           # 워크플로우 7개(project-kickoff·design-foundation 포함)
     docs/_shared/             # 공유 프래그먼트 6개(git-conventions 포함)
     config/                   # 센서: eslint·tsconfig·husky·commitlint·CI·prisma·docker·.vscode·scripts

@@ -11,13 +11,17 @@
 | **기능 정의서**(PRD) | `specs/<기능>.md`          | `specs/_template.md`      | 기능 빌드 전(정의 게이트 산출물)                        |
 | **화면 정의서**      | `screens/<화면>.md`        | `screens/_template.md`    | 해당 화면/컴포넌트 작업 시                            |
 | **데이터 모델**(기획)  | `data-model/<도메인>.md`    | `data-model/_template.md` | 모델 설계 시 (구현 진실원천 = `prisma/schema.prisma`) |
+| **결정 기록**(ADR)    | `decisions/<NNNN-요약>.md` | `decisions/_template.md`  | 되돌리기 어려운 결정의 근거 보존(확정 후 불변)            |
+| **진행 상태**(라이브)  | `PROGRESS.md`            | —                         | 세션 핸드오프 — **이어받을 때 맨 먼저 읽음**             |
+| **마찰 로그**         | `friction-log.md`        | —                         | 반복 마찰 기록 → 2회차에 규칙 승격(`workflow-change`) |
 | **하네스**(실행 절차)  | `workflows/`, `_shared/` | —                         | 작업 라우팅(`AGENTS.md`가 안내)                    |
 
 ## 규칙
 1. **진실원천:** 기획=이 문서들(*왜*), DB 구현=`prisma/schema.prisma`(*어떻게*). 둘이 충돌하면 역할로 가른다.
 2. **양식 통일:** 새 문서는 해당 `_template.md`를 복제해 채운다 → 모든 기능이 같은 모양(여러 사람이 비슷한 문서).
 3. **참고 순서:** 기능 계획 = `product/overview.md` → 관련 `specs/` → 관련 `screens/` → `data-model/`.
-4. **변경:** 이 지도 구조 자체를 바꾸려면 `workflows/workflow-change.md`(PR+승인).
+4. **외부화 3층(역할 분리):** *지금 뭐 하는 중* = `PROGRESS.md`(휘발성, 자주 갱신) / *왜 그렇게 정했나* = `decisions/`(불변, 영구) / *또 반복되는 마찰* = `friction-log.md`(2회차에 규칙으로 승격). 셋을 섞지 않는다.
+5. **변경:** 이 지도 구조 자체를 바꾸려면 `workflows/workflow-change.md`(PR+승인).
 
 ## 처음 시작이라면
 `workflows/project-kickoff.md` 가 위 문서들을 **처음 채우는 절차**다(아이디어만/기획만/기획+디자인 분기).

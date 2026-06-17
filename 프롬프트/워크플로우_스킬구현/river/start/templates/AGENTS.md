@@ -25,6 +25,7 @@
 
 > **문서는 `docs/README.md`(문서 지도)를 따른다.** 어떤 기획/정의 문서가 어디에 어떤 양식으로 있는지, 언제 무엇을 참고하는지가 거기 있다.
 
+- **세션을 이어받을 땐** 먼저 `docs/PROGRESS.md`(지금 진행 상태)를 읽는다. "왜 이렇게 했나"는 `docs/decisions/`(ADR), 반복된 마찰은 `docs/friction-log.md`.
 - **기능을 분석·계획·의문 제기할 땐** 먼저 `docs/product/overview.md`(프로젝트 기본 정의: 목적·대상·용어·범위·비기능요구)를 읽는다. 모든 판단의 기준점이다.
 - 기능정의서 = `docs/specs/<기능>.md`, 화면정의서 = `docs/screens/<화면>.md`, 데이터 = `docs/data-model/` + `prisma/schema.prisma`(구현 진실원천).
 - **새 기획/정의 문서를 만들 땐 `docs/README.md` 지도가 정한 위치·템플릿을 그대로 따른다.** 경로를 임의로 정하지 않는다(센서가 검사한다).
@@ -52,6 +53,7 @@
 ---
 
 ## ④ 작업 후 (모든 워크플로우 공통 종료)
+- **`docs/PROGRESS.md` 갱신**(진행 중·다음 할 일). 되돌리기 어려운 결정을 내렸으면 `docs/decisions/`에 ADR 1장(`decisions/_template.md`). 반복된 마찰·리뷰 지적이면 `docs/friction-log.md`에 append(2회차면 `workflow-change`로 승격).
 - 브랜치·커밋 규칙은 **`docs/_shared/git-conventions.md`** 를 따른다(Conventional Commits, 타입 영어+제목 한글).
 - 작업 단위 = 브랜치/PR. **CI(우회 불가 벽)** 통과해야 머지.
 - 하네스(이 문서·워크플로우·센서·`docs/README.md`)를 바꿨다면 `workflow-change` 절차(PR+승인). **AGENTS.md를 고치면 `CLAUDE.md`·`GEMINI.md` 포인터도 동기 확인.**

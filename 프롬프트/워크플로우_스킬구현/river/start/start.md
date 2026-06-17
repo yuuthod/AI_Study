@@ -105,6 +105,7 @@
 - `templates/CLAUDE.md` → 루트 `CLAUDE.md`, `templates/GEMINI.md` → 루트 `GEMINI.md` (둘 다 AGENTS.md를 가리키는 얇은 포인터)
 - `templates/docs/*` → `docs/` 전체:
   - `docs/README.md`(문서 지도), `docs/product/overview.md`, `docs/specs/_template.md`, `docs/screens/_template.md`, `docs/data-model/_template.md`
+  - `docs/decisions/_template.md`(ADR 결정 기록), `docs/PROGRESS.md`(진행 핸드오프), `docs/friction-log.md`(마찰 로그)
   - `docs/workflows/*`(project-kickoff 포함), `docs/_shared/*`(git-conventions 포함)
 
 ### Phase 5 · 보안 기반 코드 + 예시 1개
@@ -139,7 +140,7 @@
 2. `.gitignore` 에 `node_modules` · `.env` · 빌드 산출물이 포함됐는지 확인.
 3. `git add -A`
 4. `git commit -m "chore: initial project setup"`
-5. 사람에게 **종료 보고**: 무엇이 깔렸는지, `pnpm dev` 로 시작하는 법, **두 번째 스텝은 `docs/workflows/project-kickoff.md`**, 이후 작업은 `AGENTS.md` 라우터를 따르라는 안내.
+5. 사람에게 **종료 보고**: 무엇이 깔렸는지, `pnpm dev` 로 시작하는 법, **두 번째 스텝은 `docs/workflows/project-kickoff.md`**, 이후 작업은 `AGENTS.md` 라우터를 따르며 **세션 진행은 `docs/PROGRESS.md`로 이어받는다**는 안내.
 
 ---
 
