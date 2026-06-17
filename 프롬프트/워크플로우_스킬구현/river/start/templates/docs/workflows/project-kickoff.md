@@ -11,19 +11,19 @@
 1. **발산→수렴:** 스킬 있으면 `office-hours`/`brainstorming`으로 문제·사용자·범위 탐색. 없으면 구조화 Q&A.
 2. **압박·구체화:** `grill-me`(있으면)로 모호한 곳을 합의 가능한 수준까지.
 3. **문서화:** `docs/product/overview.md` 채우고, 기능별 `docs/specs/<기능>.md`(`_template`), 필요하면 `docs/data-model/`. (`to-prd` 있으면 활용)
-4. **디자인 없음:** `app/styles/tokens.css`는 **중립 임시값** 유지. 시각 게이트는 "동작" 중심, 비주얼 폴리시는 디자인 확정 후 래칫.
+4. **디자인 없음:** `design-foundation.md`를 **중립 임시값 모드**로 1회 실행(토큰 임시값 + 글로벌 + 에센셜 프리미티브 구조). 시각 게이트는 "동작" 중심, 비주얼 폴리시는 디자인 확정 후 `design-foundation` 리테마링.
 5. → spec이 "개발 가능 수준"이면 `feature-build`.
 
 ## 경로 ② 기획만 (디자인 없음)
 1. **정규화:** 받은 기획을 `docs/product/overview.md` + `docs/specs/*` 양식으로 정리.
 2. **빈칸 보완:** `grill-me`(있으면)로 모호한 수용기준만 메운다.
 3. **데이터:** `docs/data-model/*` 작성 → `prisma/schema.prisma` 반영 → `migrate dev`.
-4. **디자인 없음:** 토큰 임시값(①과 동일).
+4. **디자인 없음:** `design-foundation.md` 중립 임시값 모드(①과 동일).
 5. → `feature-build`.
 
 ## 경로 ③ 기획 + 디자인 모두
-1. **가볍게 확인:** 적합성·범위만 점검(이미 spec 존재 → `docs/specs/*`로 정리).
-2. **디자인 토큰 주입:** 확정 색/폰트/간격을 **`app/styles/tokens.css` 슬롯에 실값으로** 채운다(원시→의미 2계층). 화면정의서는 `docs/screens/*`.
+1. **가볍게 확인:** 적합성·범위만 점검(이미 spec 존재 → `docs/specs/*`로 정리). 화면정의서는 `docs/screens/*`.
+2. **디자인 파운데이션:** `design-foundation.md`를 **실값 모드**로 실행 — 확정 색/폰트/간격을 `tokens.css`에 실값 주입 + 글로벌 + 에센셜 프리미티브 + 경량 게이트.
 3. → `feature-build` 풀 루프. 시각 게이트가 **시안 대비로 진짜 작동.**
 
 ## 공통 종료

@@ -10,6 +10,7 @@
 | 작업 유형 | 신호 | 열 문서 |
 |---|---|---|
 | **프로젝트 시작 / 기획 추가** | 첫 셋업, 아이디어·기획·기능정의서·화면정의서 제공 | `docs/workflows/project-kickoff.md` |
+| **디자인 파운데이션 / 리테마링** | 시안→토큰·프리미티브, 색/테마/다크모드 변경 | `docs/workflows/design-foundation.md` |
 | **기능/페이지 추가** | "~화면/기능 만들어줘", 새 흐름 | `docs/workflows/feature-build.md` |
 | **컴포넌트 작업** | 단일 UI 컴포넌트 신규/수정 | `docs/workflows/component-create.md` |
 | **라우트/서버 작업** | loader·action·API·인증·DB 접근 | `docs/workflows/route-create.md` |

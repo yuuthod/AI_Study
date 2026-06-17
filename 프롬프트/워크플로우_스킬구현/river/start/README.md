@@ -13,7 +13,7 @@ React Router v7 풀스택 + 백엔드 보안 + 하네스 엔지니어링(라우�
 
 ## 끝나면
 - `pnpm dev` 로 개발 시작. `start/` 흔적 없음, 깨끗한 트리 + 커밋 1개.
-- **두 번째 스텝:** `docs/workflows/project-kickoff.md` 로 기획·정의 문서를 채운다(아이디어만/기획만/기획+디자인).
+- **두 번째 스텝:** `docs/workflows/project-kickoff.md` 로 기획·정의 문서를 채운다(아이디어만/기획만/기획+디자인). 디자인은 `design-foundation.md`(토큰→글로벌→프리미티브)로 깔고, 페이지는 그 위에서.
 - 이후 모든 작업은 루트 `AGENTS.md`(라우터, Claude·Gemini는 포인터로 도달)가 `docs/workflows/<작업>.md` 하나로 안내.
 
 ## 구조
@@ -26,7 +26,7 @@ start/
     CLAUDE.md, GEMINI.md      # AGENTS.md를 가리키는 얇은 포인터
     docs/README.md            # 문서 지도(기획/정의서 위치·양식 거버넌스)
     docs/product/, specs/, screens/, data-model/   # 기획·정의 + 템플릿
-    docs/workflows/           # 워크플로우 6개(project-kickoff 포함)
+    docs/workflows/           # 워크플로우 7개(project-kickoff·design-foundation 포함)
     docs/_shared/             # 공유 프래그먼트 6개(git-conventions 포함)
     config/                   # 센서: eslint·tsconfig·husky·commitlint·CI·prisma·docker·.vscode·scripts
     reference/                # 보안 코드 스니펫(Phase 5가 그대로 생성)
